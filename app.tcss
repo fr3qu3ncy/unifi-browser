@@ -1,0 +1,338 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Unifi Browser — app stylesheet
+   Dark terminal aesthetic inspired by Claude Code / Gemini CLI
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Colour palette ──────────────────────────────────────────────────────── */
+$bg:         #0d0d0d;
+$surface:    #141414;
+$surface-2:  #1e1e1e;
+$border:     #2a2a2a;
+$accent:     #00b4d8;
+$accent-dim: #005f77;
+$text:       #e2e2e2;
+$text-dim:   #777777;
+$success:    #06d6a0;
+$warning:    #ffd166;
+$error:      #ef476f;
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+
+App {
+    background: $bg;
+}
+
+Screen {
+    background: $bg;
+}
+
+/* ── ContentSwitcher ─────────────────────────────────────────────────────── */
+
+ContentSwitcher {
+    height: 1fr;
+    background: $bg;
+}
+
+/* ── Welcome View ────────────────────────────────────────────────────────── */
+
+WelcomeView {
+    background: $bg;
+    align: center middle;
+    height: 100%;
+}
+
+#logo {
+    color: $accent;
+    text-align: center;
+    text-style: bold;
+    width: 100%;
+    content-align: center middle;
+}
+
+#welcome-hints {
+    color: $text-dim;
+    text-align: center;
+    width: 100%;
+    padding: 1 4;
+}
+
+/* ── Sites / Devices / Clients / Networks / Detail Views ─────────────────── */
+
+SitesView,
+DevicesView,
+ClientsView,
+NetworksView,
+DeviceDetailView {
+    background: $bg;
+    padding: 1 2;
+    height: 100%;
+}
+
+ClientDetailView {
+    background: $bg;
+    padding: 1 2;
+    height: 100%;
+}
+
+NetworkDetailView {
+    background: $bg;
+    padding: 1 2;
+    height: 100%;
+}
+
+SiteMenuView {
+    background: $bg;
+    padding: 2 4;
+    height: 100%;
+    align: left top;
+}
+
+#sites-title,
+#devices-title,
+#clients-title,
+#networks-title,
+#sitemenu-title,
+#detail-title,
+#client-detail-title,
+#network-detail-title {
+    color: $accent;
+    text-style: bold;
+    padding-bottom: 1;
+}
+
+/* ── Site Menu table ─────────────────────────────────────────────────────── */
+
+#sitemenu-table {
+    height: auto;
+    border: tall $border;
+    background: $surface;
+    width: 72;
+    margin-top: 1;
+}
+
+.menu-item-body {
+    background: transparent;
+    height: auto;
+}
+
+/* ── Detail scroll bodies ────────────────────────────────────────────────── */
+
+#detail-scroll,
+#client-detail-scroll,
+#network-detail-scroll {
+    height: 1fr;
+    background: $surface;
+    border: tall $border;
+    padding: 1 1;
+}
+
+#detail-body,
+#client-detail-body,
+#network-detail-body {
+    color: $text;
+    padding: 0 1;
+}
+
+DataTable {
+    background: $surface;
+    color: $text;
+    border: tall $border;
+    height: 1fr;
+    scrollbar-color: $border;
+    scrollbar-color-hover: $accent-dim;
+    scrollbar-background: $surface;
+}
+
+DataTable > .datatable--header {
+    background: $surface-2;
+    color: $accent;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: $accent-dim;
+    color: $text;
+}
+
+DataTable > .datatable--hover {
+    background: #1a2a30;
+}
+
+/* ── Bottom area (single docked container) ───────────────────────────────── */
+
+BottomArea {
+    dock: bottom;
+    /* height is set programmatically in on_mount / show_completions / hide_completions */
+    background: $surface;
+}
+
+/* ── Command Bar ─────────────────────────────────────────────────────────── */
+
+CommandBar {
+    height: 3;
+    background: $surface;
+    border-top: tall $border;
+}
+
+#cmd-row {
+    height: 3;
+    padding: 0 1;
+    background: $surface;
+    align: left middle;
+}
+
+#cmd-prompt {
+    color: $accent;
+    text-style: bold;
+    padding: 0 1;
+    width: auto;
+    content-align: left middle;
+}
+
+#cmd-input {
+    background: $surface;
+    border: none;
+    color: $text;
+    padding: 0;
+    height: 3;
+}
+
+#cmd-input:focus {
+    border: none;
+    background: $surface;
+}
+
+/* ── Autocomplete completions ────────────────────────────────────────────── */
+
+#completions {
+    display: none;
+    background: $surface-2;
+    border: tall $accent;
+    border-bottom: none;
+    max-height: 10;
+    padding: 0;
+    margin: 0;
+}
+
+#completions > ListItem {
+    padding: 0 1;
+    background: $surface-2;
+    color: $text;
+}
+
+#completions > ListItem:hover {
+    background: $accent-dim;
+    color: $text;
+}
+
+#completions > ListItem.--highlight {
+    background: $accent-dim;
+    color: #ffffff;
+}
+
+/* ── Login Modal ─────────────────────────────────────────────────────────── */
+
+LoginScreen {
+    background: rgba(0, 0, 0, 0.75);
+    align: center middle;
+}
+
+#login-dialog {
+    background: $surface;
+    border: tall $accent;
+    padding: 2 4;
+    width: 66;
+    height: auto;
+    max-height: 40;
+}
+
+#login-title {
+    color: $accent;
+    text-style: bold;
+    text-align: center;
+    padding-bottom: 1;
+    border-bottom: tall $border;
+    margin-bottom: 1;
+}
+
+LoginScreen Label {
+    color: $text-dim;
+    padding: 1 0 0 0;
+    height: auto;
+}
+
+LoginScreen Input {
+    background: $bg;
+    border: tall $border;
+    color: $text;
+    margin-bottom: 0;
+}
+
+LoginScreen Input:focus {
+    border: tall $accent;
+}
+
+#history-label {
+    color: $text-dim;
+    padding: 1 0 0 0;
+    height: auto;
+}
+
+#url-history {
+    background: $bg;
+    border: tall $border;
+    max-height: 5;
+    margin-bottom: 0;
+}
+
+#url-history > ListItem {
+    padding: 0 1;
+    background: $bg;
+    color: $text-dim;
+}
+
+#url-history > ListItem:hover,
+#url-history > ListItem.--highlight {
+    background: $accent-dim;
+    color: $text;
+}
+
+
+#login-buttons {
+    height: auto;
+    padding-top: 1;
+    align: right middle;
+}
+
+#btn-connect {
+    background: $accent;
+    color: $bg;
+    border: none;
+    text-style: bold;
+    min-width: 12;
+}
+
+#btn-connect:hover {
+    background: #00d4ff;
+}
+
+#btn-cancel {
+    background: $surface-2;
+    color: $text-dim;
+    border: none;
+    margin-left: 1;
+    min-width: 10;
+}
+
+#btn-cancel:hover {
+    background: $border;
+    color: $text;
+}
+
+/* ── Notifications ───────────────────────────────────────────────────────── */
+
+Toast {
+    background: $surface-2;
+    border: tall $border;
+    color: $text;
+}
