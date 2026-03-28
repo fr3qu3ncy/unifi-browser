@@ -4,17 +4,19 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── Colour palette ──────────────────────────────────────────────────────── */
-$bg:         #0d0d0d;
-$surface:    #141414;
-$surface-2:  #1e1e1e;
-$border:     #2a2a2a;
-$accent:     #00b4d8;
-$accent-dim: #005f77;
-$text:       #e2e2e2;
-$text-dim:   #777777;
-$success:    #06d6a0;
-$warning:    #ffd166;
-$error:      #ef476f;
+$bg:              #0d0d0d;
+$surface:         #141414;
+$surface-2:       #1e1e1e;
+$border:          #2a2a2a;
+$accent:          #00b4d8;
+$accent-dim:      #005f77;
+$remote-accent:   #e6a817;
+$remote-accent-dim: #7a4f00;
+$text:            #e2e2e2;
+$text-dim:        #777777;
+$success:         #06d6a0;
+$warning:         #ffd166;
+$error:           #ef476f;
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
 
@@ -56,25 +58,24 @@ WelcomeView {
     padding: 1 4;
 }
 
-/* ── Sites / Devices / Clients / Networks / Detail Views ─────────────────── */
+/* ── List views ──────────────────────────────────────────────────────────── */
 
 SitesView,
 DevicesView,
 ClientsView,
 NetworksView,
-DeviceDetailView {
+WifiView {
     background: $bg;
     padding: 1 2;
     height: 100%;
 }
 
-ClientDetailView {
-    background: $bg;
-    padding: 1 2;
-    height: 100%;
-}
+/* ── Detail views (all share the same layout) ────────────────────────────── */
 
-NetworkDetailView {
+DeviceDetailView,
+ClientDetailView,
+NetworkDetailView,
+WifiDetailView {
     background: $bg;
     padding: 1 2;
     height: 100%;
@@ -87,14 +88,19 @@ SiteMenuView {
     align: left top;
 }
 
+/* ── View title bars ─────────────────────────────────────────────────────── */
+
 #sites-title,
 #devices-title,
 #clients-title,
 #networks-title,
+#wifi-title,
+#wans-title,
 #sitemenu-title,
 #detail-title,
 #client-detail-title,
-#network-detail-title {
+#network-detail-title,
+#wifi-detail-title {
     color: $accent;
     text-style: bold;
     padding-bottom: 1;
@@ -115,11 +121,12 @@ SiteMenuView {
     height: auto;
 }
 
-/* ── Detail scroll bodies ────────────────────────────────────────────────── */
+/* ── Detail scroll areas & bodies ────────────────────────────────────────── */
 
 #detail-scroll,
 #client-detail-scroll,
-#network-detail-scroll {
+#network-detail-scroll,
+#wifi-detail-scroll {
     height: 1fr;
     background: $surface;
     border: tall $border;
@@ -128,7 +135,8 @@ SiteMenuView {
 
 #detail-body,
 #client-detail-body,
-#network-detail-body {
+#network-detail-body,
+#wifi-detail-body {
     color: $text;
     padding: 0 1;
 }
@@ -335,4 +343,281 @@ Toast {
     background: $surface-2;
     border: tall $border;
     color: $text;
+    width: 40;
+    padding: 0 1;
+    height: auto;
+    min-height: 1;
+}
+
+ToastHolder {
+    width: 42;
+}
+
+/* ── Help modal ──────────────────────────────────────────────────────────── */
+
+#help-dialog {
+    background: $surface;
+    border: tall $accent;
+    padding: 1 4;
+    width: 80;
+    height: auto;
+}
+
+#help-title {
+    color: $accent;
+    text-style: bold;
+    text-align: center;
+    padding-bottom: 0;
+    border-bottom: solid $border;
+    margin-bottom: 1;
+}
+
+#help-body {
+    padding: 1 0;
+}
+
+#help-dialog Button {
+    margin-top: 1;
+    width: 100%;
+}
+
+/* ── TabBar ──────────────────────────────────────────────────────────────── */
+
+TabBar {
+    dock: top;
+    height: 3;
+    background: $surface;
+}
+
+#tab-bar-inner {
+    height: 3;
+    background: $surface;
+    border-bottom: solid $border;
+}
+
+#tab-local,
+#tab-remote {
+    height: 3;
+    width: auto;
+    content-align: left middle;
+    padding: 0 1;
+}
+
+#tab-hints {
+    height: 3;
+    width: 1fr;
+    content-align: right middle;
+    padding-right: 2;
+    color: $text-dim;
+}
+
+/* ── Remote Welcome View ─────────────────────────────────────────────────── */
+
+RemoteWelcomeView {
+    background: $bg;
+    align: center middle;
+    height: 100%;
+}
+
+#r-logo {
+    color: $remote-accent;
+    text-align: center;
+    text-style: bold;
+    width: 100%;
+    content-align: center middle;
+}
+
+#r-welcome-hints {
+    color: $text-dim;
+    text-align: center;
+    width: 100%;
+    padding: 1 4;
+}
+
+/* ── Remote list views ───────────────────────────────────────────────────── */
+
+RemoteSitesView,
+RemoteDevicesView,
+RemoteClientsView,
+RemoteNetworksView,
+RemoteWifiView {
+    background: $bg;
+    padding: 1 2;
+    height: 100%;
+}
+
+RemoteSiteMenuView {
+    background: $bg;
+    padding: 2 4;
+    height: 100%;
+    align: left top;
+}
+
+/* ── Remote detail views ─────────────────────────────────────────────────── */
+
+RemoteDeviceDetailView,
+RemoteClientDetailView,
+RemoteNetworkDetailView,
+RemoteWifiDetailView {
+    background: $bg;
+    padding: 1 2;
+    height: 100%;
+}
+
+/* ── Remote title bars ───────────────────────────────────────────────────── */
+
+#r-sites-title,
+#r-devices-title,
+#r-clients-title,
+#r-networks-title,
+#r-wifi-title,
+#r-wans-title,
+#r-hosts-title,
+#r-sitemenu-title,
+#r-detail-title,
+#r-client-detail-title,
+#r-network-detail-title,
+#r-wifi-detail-title,
+#r-host-detail-title,
+#r-controller-title {
+    color: $remote-accent;
+    text-style: bold;
+    padding-bottom: 1;
+    border-bottom: tall $remote-accent-dim;
+    margin-bottom: 1;
+    width: 100%;
+}
+
+/* ── Remote DataTables ───────────────────────────────────────────────────── */
+
+#r-sites-table,
+#r-devices-table,
+#r-clients-table,
+#r-networks-table,
+#r-wifi-table,
+#r-wans-table {
+    height: 1fr;
+    background: $bg;
+}
+
+#r-sites-table > .datatable--header,
+#r-devices-table > .datatable--header,
+#r-clients-table > .datatable--header,
+#r-networks-table > .datatable--header,
+#r-wifi-table > .datatable--header,
+#r-wans-table > .datatable--header {
+    color: $remote-accent;
+    background: $surface;
+    text-style: bold;
+}
+
+#r-sites-table > .datatable--cursor,
+#r-devices-table > .datatable--cursor,
+#r-clients-table > .datatable--cursor,
+#r-networks-table > .datatable--cursor,
+#r-wifi-table > .datatable--cursor,
+#r-wans-table > .datatable--cursor {
+    background: $remote-accent-dim;
+    color: $text;
+}
+
+/* ── Remote SiteMenu table ───────────────────────────────────────────────── */
+
+#r-sitemenu-table {
+    height: auto;
+    max-height: 20;
+    background: $bg;
+    width: 80;
+    border: tall $remote-accent-dim;
+    margin-top: 1;
+}
+
+#r-sitemenu-table > .datatable--header {
+    color: $remote-accent;
+    background: $surface;
+    text-style: bold;
+}
+
+#r-sitemenu-table > .datatable--cursor {
+    background: $remote-accent-dim;
+    color: $text;
+}
+
+/* ── Remote detail scroll bodies ─────────────────────────────────────────── */
+
+#r-detail-scroll,
+#r-client-detail-scroll,
+#r-network-detail-scroll,
+#r-wifi-detail-scroll,
+#r-host-detail-scroll,
+#r-controller-scroll {
+    height: 1fr;
+    background: $bg;
+}
+
+#r-detail-body,
+#r-client-detail-body,
+#r-network-detail-body,
+#r-wifi-detail-body,
+#r-host-detail-body,
+#r-controller-body {
+    padding: 1 2;
+}
+
+/* ── ISP Metrics view ────────────────────────────────────────────────────── */
+
+IspMetricsView {
+    layout: vertical;
+    height: 1fr;
+}
+
+#r-isp-title {
+    color: $remote-accent;
+    text-style: bold;
+    padding: 0 2;
+    height: 1;
+}
+
+#r-isp-presets {
+    padding: 0 2;
+    height: 1;
+    background: $surface;
+    border-bottom: solid $remote-accent 40%;
+}
+
+#r-isp-hint {
+    padding: 0 2;
+    height: 1;
+    color: $text-muted;
+    border-bottom: solid $border;
+    margin-bottom: 0;
+}
+
+#r-isp-scroll {
+    height: 1fr;
+    scrollbar-color: $remote-accent 30%;
+}
+
+#r-isp-body {
+    padding: 1 2;
+}
+
+/* ── Remote login dialog ─────────────────────────────────────────────────── */
+
+#remote-login-dialog {
+    background: $surface;
+    border: tall $remote-accent;
+    padding: 2 4;
+    width: 66;
+    height: auto;
+    max-height: 40;
+}
+
+#remote-login-title {
+    color: $remote-accent;
+    text-style: bold;
+    text-align: center;
+    padding-bottom: 1;
+    border-bottom: tall $remote-accent-dim;
+    margin-bottom: 1;
 }
