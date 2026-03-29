@@ -28,13 +28,26 @@ A terminal UI (TUI) application for browsing and inspecting your Unifi network c
 
 ## Quick Start
 
+**macOS / Linux**
 ```bash
 git clone <repo-url>
 cd unifi-browser
 bash run.sh
 ```
 
-`run.sh` will:
+**Windows (PowerShell)**
+```powershell
+git clone <repo-url>
+cd unifi-browser
+.\run.ps1
+```
+
+> If PowerShell blocks the script due to execution policy, run this once (as your user, no admin needed):
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+
+Both scripts will:
 1. Create a Python virtual environment (`.venv/`) if one does not already exist
 2. Activate it
 3. Install all dependencies from `requirements.txt`
@@ -159,7 +172,8 @@ Metrics displayed: ISP name, ASN, average/max latency, download throughput, uplo
 ```
 unifi-browser/
 ├── main.py                        # Entry point
-├── run.sh                         # Launch script (creates venv, installs deps)
+├── run.sh                         # Launch script — macOS/Linux (creates venv, installs deps)
+├── run.ps1                        # Launch script — Windows PowerShell
 ├── app.tcss                       # Textual stylesheet
 ├── requirements.txt
 └── unifi_browser/
