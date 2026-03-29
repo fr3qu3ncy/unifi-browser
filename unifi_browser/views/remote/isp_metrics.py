@@ -77,9 +77,7 @@ class IspMetricsView(Container):
         parts = []
         for i, (label, _, _) in enumerate(_PRESETS):
             if i == self._preset_idx:
-                parts.append(
-                    f"[bold #e6a817 on #3a2e00]  ❯ {label}  [/bold #e6a817 on #3a2e00]"
-                )
+                parts.append(f"[bold #e6a817 reverse]  ❯ {label}  [/bold #e6a817 reverse]")
             else:
                 parts.append(f"[dim]  {label}  [/dim]")
         preset_row = "   ".join(parts)

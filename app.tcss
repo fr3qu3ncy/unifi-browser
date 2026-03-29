@@ -495,7 +495,8 @@ RemoteWifiDetailView {
 #r-clients-table,
 #r-networks-table,
 #r-wifi-table,
-#r-wans-table {
+#r-wans-table,
+#r-hosts-table {
     height: 1fr;
     background: $bg;
 }
@@ -505,7 +506,8 @@ RemoteWifiDetailView {
 #r-clients-table > .datatable--header,
 #r-networks-table > .datatable--header,
 #r-wifi-table > .datatable--header,
-#r-wans-table > .datatable--header {
+#r-wans-table > .datatable--header,
+#r-hosts-table > .datatable--header {
     color: $remote-accent;
     background: $surface;
     text-style: bold;
@@ -516,7 +518,8 @@ RemoteWifiDetailView {
 #r-clients-table > .datatable--cursor,
 #r-networks-table > .datatable--cursor,
 #r-wifi-table > .datatable--cursor,
-#r-wans-table > .datatable--cursor {
+#r-wans-table > .datatable--cursor,
+#r-hosts-table > .datatable--cursor {
     background: $remote-accent-dim;
     color: $text;
 }
@@ -555,6 +558,15 @@ RemoteWifiDetailView {
     background: $bg;
 }
 
+#r-detail-scroll:focus,
+#r-client-detail-scroll:focus,
+#r-network-detail-scroll:focus,
+#r-wifi-detail-scroll:focus,
+#r-host-detail-scroll:focus,
+#r-controller-scroll:focus {
+    border: tall $remote-accent;
+}
+
 #r-detail-body,
 #r-client-detail-body,
 #r-network-detail-body,
@@ -575,20 +587,19 @@ IspMetricsView {
     color: $remote-accent;
     text-style: bold;
     padding: 0 2;
-    height: 1;
+    height: auto;
 }
 
 #r-isp-presets {
     padding: 0 2;
-    height: 1;
+    height: auto;
     background: $surface;
-    border-bottom: solid $remote-accent 40%;
 }
 
 #r-isp-hint {
     padding: 0 2;
-    height: 1;
-    color: $text-muted;
+    height: auto;
+    color: $text-dim;
     border-bottom: solid $border;
     margin-bottom: 0;
 }
@@ -596,6 +607,10 @@ IspMetricsView {
 #r-isp-scroll {
     height: 1fr;
     scrollbar-color: $remote-accent 30%;
+}
+
+#r-isp-scroll:focus {
+    border: tall $remote-accent;
 }
 
 #r-isp-body {
@@ -620,4 +635,30 @@ IspMetricsView {
     padding-bottom: 1;
     border-bottom: tall $remote-accent-dim;
     margin-bottom: 1;
+}
+
+/* Override local blue accent for all interactive elements inside the remote login dialog */
+
+#remote-login-dialog Input:focus {
+    border: tall $remote-accent;
+}
+
+#remote-login-dialog #btn-connect {
+    background: $remote-accent;
+    color: #000000;
+    border: tall $remote-accent;
+    text-style: bold;
+}
+
+#remote-login-dialog #btn-connect:hover {
+    background: $remote-accent-dim;
+    color: $text;
+}
+
+#remote-login-dialog ListView:focus {
+    border: tall $remote-accent;
+}
+
+#remote-login-dialog ListView > .listview--highlight {
+    background: $remote-accent-dim;
 }
